@@ -9,45 +9,25 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-//Now we are going to create a triangle geometry with the specified vertice positions
+//Now we are going to create a triangle
 
-/*
-const geometry = new THREE.Geometry();
-let vertice1 = new THREE.Vector3( -0.50, 0, 0 );
-let vertice2 = new THREE.Vector3( 0.50, 0, 0 );
-let vertice3 = new THREE.Vector3( 0, 0.87, 0 );
+//The only way I found that worked was to add the vertices manually to a BufferGeometry
+let a = new THREE.Vector3(-0.50, 0, 0);
+let b = new THREE.Vector3(0.50, 0, 0);
+let c = new THREE.Vector3(0, 0.87, 0);
+const triangleGeometry = new THREE.BufferGeometry().setFromPoints([a, b, c]);
 
-geometry.vertices.push( vertice1, vertice2, vertice3 );
-
-// We also have to build a triangular face on these vertices
-
-let face = new THREE.Face3( 0, 1, 2 );
-geometry.faces.push( face );
-
+//Now we are going to create the material (color)
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
 
-const triangle = new THREE.Mesh( geometry, material );
-scene.add( triangle );
+const triangle = new THREE.Mesh(triangleGeometry, material);
+scene.add(triangle);
 
-camera.position.z = 5; //move the camera away from the triangle
-
-*/
-
-//Now we are going to create a cube
-
-const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-
-const cube = new THREE.Mesh( cubeGeometry, material );
-scene.add( cube );
-
-camera.position.z = 5; //move the camera away from the cube
+camera.position.z = 3; //move the camera away from the triangle
 
 // We will use an animation loop to render the scene and the triangle
+// We will use an animation loop to render the scene and the triangle
 function animate() {
-    //This part animates the triangle
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
 
     //This part renders the scene
     renderer.render( scene, camera );
