@@ -11,21 +11,43 @@ document.body.appendChild( renderer.domElement );
 
 //Now we are going to create a triangle
 
-//The only way I found that worked was to add the vertices manually to a BufferGeometry
-let a = new THREE.Vector3(-0.50, 0, 0);
-let b = new THREE.Vector3(0.50, 0, 0);
-let c = new THREE.Vector3(0, 0.87, 0);
-const triangleGeometry = new THREE.BufferGeometry().setFromPoints([a, b, c]);
+//Setting background color
+scene.background = new THREE.Color(0x1b1e2b);
 
-//Now we are going to create the material (color)
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
+//I had big trouble because most examples used Geometry() and that is deprecated.
+//So I used BufferGeometry() and it works very differently
+const triangleGeometry = new THREE.BufferGeometry();
+//Defining vertice positions
+const vertices = new Float32Array([
+    -0.50, 0, 0,
+    0.50, 0, 0,
+    0, 0.87, 0
+  ]);
+// Adding them to the geometry
+triangleGeometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
+//Arranging the vertices with indices
+const indices = new Uint16Array([0, 1, 2]);
+triangleGeometry.setIndex(new THREE.BufferAttribute(indices, 1));
+
+// Defining and adding colors
+const colors = new Float32Array([
+    0, 1, 0, // green for vertex a
+    0, 0, 1, // blue for vertex b
+    1, 0, 0  // red for vertex c
+]);
+
+triangleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+//Now we are going to create the material ensuring that the colors are displayed
+const material = new THREE.MeshBasicMaterial( { vertexColors: true, side: THREE.DoubleSide } );
+
+//Now we are going to create the triangle mesh
 const triangle = new THREE.Mesh(triangleGeometry, material);
 scene.add(triangle);
 
 camera.position.z = 3; //move the camera away from the triangle
 
-// We will use an animation loop to render the scene and the triangle
 // We will use an animation loop to render the scene and the triangle
 function animate() {
 
