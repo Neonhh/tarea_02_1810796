@@ -19,7 +19,7 @@ void display() {
         glVertex2f(-0.5, 0.0);
         glColor3f(0.0, 0.0, 1.0); // Blue
         glVertex2f(0.5, 0.0);
-    glEnd(); //ends definition of the triagle
+    glEnd(); //ends definition of the triangle
 
     glFlush(); //forces to render the triangle
 }
