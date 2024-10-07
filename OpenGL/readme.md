@@ -24,7 +24,7 @@ Nota: En la parte donde se ejecuta `pacman -S mingw-w64-x86_64-toolchain`, basta
 
 **Se necesita utilizar PowerShell o el cmd de Windows**
 Si se esta utilizando un terminal de bash, podemos ejecutar el comando `cmd.exe .`
-para abrir el cmd en el directorio actual.
+para abrir el cmd en el directorio actual (en este caso, debemos abrir cmd en el directorio **Triangle**.).
 
 Ya en el repo esta el **main.exe**, que es la aplicacion requerida, para correrla podemos simplemente escribir `main.exe`
 
