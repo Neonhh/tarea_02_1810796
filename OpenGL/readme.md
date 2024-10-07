@@ -6,7 +6,7 @@
 **SO:** Windows 10 64 bits
 
 Dependencias a instalar:
-- MinGW
+- MinGW (incluye gcc para compilar C++)
 - Freeglut (herramientas necesarias para manejar OpenGL)
 - Glew (carga extensiones de OpenGL durante la ejecucion)
 
