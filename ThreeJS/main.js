@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+//We import the three library for a CDN for it to work with VSCode Live Server
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
 
 //"We need three things: scene, camera, renderer"
 
